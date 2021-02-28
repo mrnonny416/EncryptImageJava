@@ -41,6 +41,19 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.awt.Color;
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
+
+import java.awt.Font;
+import java.awt.Window.Type;
+import java.awt.Dialog.ModalExclusionType;
+import javax.swing.JDesktopPane;
+import javax.swing.JLayeredPane;
+import java.awt.Toolkit;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.JProgressBar;
 
 public class MainGUI {
 
@@ -55,6 +68,8 @@ public class MainGUI {
 	private JPasswordField txtSecretKey;
 	boolean isbtnEncrypt = false;
 	boolean isbtnDecrypt = false;
+	Color pelColor = new Color(251, 225, 232);
+	Color frmColor = new Color(249, 201, 215);
 
 	/**
 	 * Launch the application.
@@ -85,101 +100,186 @@ public class MainGUI {
 	private void initialize() {
 
 		frmImageEncryption = new JFrame();
+		frmImageEncryption.setIconImage(Toolkit.getDefaultToolkit()
+				.getImage("C:\\Users\\rusak\\eclipse-workspace\\EncryptImage\\encrypt-2-569399.png"));
+		frmImageEncryption.getContentPane().setBackground(frmColor);
 		frmImageEncryption.setTitle("Image Encryption");
 		frmImageEncryption.setResizable(false);
-		frmImageEncryption.setBounds(100, 100, 666, 691);
+		frmImageEncryption.setBounds(100, 100, 573, 694);
 		frmImageEncryption.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		txtBrowseFile = new JTextField();
 		txtSecretKey = new JPasswordField();
 		txtOutFile = new JTextField();
 		txtOutFile.setColumns(10);
 		JPanel panel = new JPanel();
-		JButton btnBrowseFile = new JButton("Browse");
+		JButton btnBrowseFile = new JButton("  Browse  ");
+		btnBrowseFile.setBackground(new Color(255, 255, 255));
+		btnBrowseFile.setForeground(new Color(102, 163, 255));
+		btnBrowseFile.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(204, 153, 204)));
+		btnBrowseFile.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
 		JButton btnEncrypt = new JButton("Encrypt");
 		btnEncrypt.setEnabled(false);
+		btnEncrypt.setBackground(new Color(255, 255, 255));
+		btnEncrypt.setForeground(new Color(102, 163, 255));
+		btnEncrypt.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(204, 153, 204)));
+		btnEncrypt.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
 		JButton btnDecrypt = new JButton("Decrypt");
+
 		btnDecrypt.setEnabled(false);
-		JButton btnShowKey = new JButton("Show");
-		JLabel lblBrowse = new JLabel("Browse");
-		JLabel lblOutFIle = new JLabel("Out FIle");
-		JLabel lblSecretKey = new JLabel("SecretKey");
+		btnDecrypt.setBackground(new Color(255, 255, 255));
+		btnDecrypt.setForeground(new Color(102, 163, 255));
+		btnDecrypt.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(204, 153, 204)));
+		btnDecrypt.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+		btnDecrypt.setEnabled(false);
+
+		JButton btnShowKey = new JButton(" Show ");
+		btnShowKey.setEnabled(false);
+		btnShowKey.setBackground(new Color(255, 255, 255));
+		btnShowKey.setForeground(new Color(102, 163, 255));
+		btnShowKey.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(204, 153, 204)));
+		btnShowKey.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+
+		txtBrowseFile.setEditable(false);
+		btnShowKey.setEnabled(false);
+		txtOutFile.setEditable(false);
+
+		JLabel lblBrowse = new JLabel("Browse : ");
+		lblBrowse.setForeground(new Color(153, 153, 153));
+		lblBrowse.setFont(new Font("Segoe Script", Font.BOLD, 20));
+
+		JLabel lblOutFIle = new JLabel("Out FIle : ");
+		lblOutFIle.setForeground(new Color(153, 153, 153));
+		lblOutFIle.setFont(new Font("Segoe Script", Font.BOLD, 20));
+
+		JLabel lblSecretKey = new JLabel("SecretKey : ");
+		lblSecretKey.setForeground(new Color(153, 153, 153));
+		lblSecretKey.setFont(new Font("Segoe Script", Font.BOLD, 20));
+
 		JButton btnExit = new JButton("Exit");
+		btnExit.setEnabled(false);
+		btnExit.setBackground(new Color(255, 255, 255));
+		btnExit.setForeground(new Color(102, 163, 255));
+		btnExit.setBorder(new MatteBorder(3, 3, 1, 1, (Color) new Color(204, 153, 204)));
+		btnExit.setFont(new Font("Comic Sans MS", Font.PLAIN, 15));
+
 		JLabel lblPreview = new JLabel("");
+		lblPreview.setFont(new Font("Segoe Script", Font.PLAIN, 30));
+		lblPreview.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPreview.setForeground(new Color(0, 0, 0));
 		lblPreview.setBackground(Color.GRAY);
+
+		JLabel lblPreview_1 = new JLabel("Preview");
+		lblPreview_1.setForeground(new Color(153, 153, 153));
+		lblPreview_1.setFont(new Font("Segoe Script", Font.BOLD, 15));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.TRAILING)
+			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblBrowse)
-									.addGap(38))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblOutFIle, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-									.addGap(26))
-								.addGroup(gl_panel.createSequentialGroup()
-									.addComponent(lblSecretKey)
-									.addGap(24)))
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(txtSecretKey)
-								.addComponent(txtBrowseFile, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-								.addComponent(txtOutFile, GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE))
-							.addGap(9)
-							.addComponent(btnShowKey)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panel.createSequentialGroup()
-									.addGap(10)
-									.addComponent(btnExit))
-								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(btnDecrypt, GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-									.addComponent(btnEncrypt, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnBrowseFile, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-							.addGap(70))
 						.addGroup(gl_panel.createSequentialGroup()
-							.addComponent(lblPreview, GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
-							.addContainerGap())))
+							.addGap(10)
+							.addComponent(lblPreview, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE)
+							.addContainerGap())
+						.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+							.addGroup(gl_panel.createSequentialGroup()
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addComponent(lblBrowse)
+									.addComponent(lblSecretKey)
+									.addComponent(lblOutFIle))
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+									.addGroup(gl_panel.createSequentialGroup()
+										.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+											.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(txtSecretKey, GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnShowKey))
+											.addGroup(gl_panel.createSequentialGroup()
+												.addComponent(btnEncrypt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnDecrypt, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+												.addPreferredGap(ComponentPlacement.RELATED)
+												.addComponent(btnExit, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)))
+										.addPreferredGap(ComponentPlacement.RELATED))
+									.addGroup(gl_panel.createSequentialGroup()
+										.addComponent(txtBrowseFile, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(btnBrowseFile))
+									.addComponent(txtOutFile, GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
+								.addGap(213))
+							.addGroup(gl_panel.createSequentialGroup()
+								.addComponent(lblPreview_1, GroupLayout.PREFERRED_SIZE, 77, GroupLayout.PREFERRED_SIZE)
+								.addContainerGap(450, Short.MAX_VALUE)))))
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel.createSequentialGroup()
 					.addGap(26)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnBrowseFile)
+						.addComponent(lblBrowse)
 						.addComponent(txtBrowseFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblBrowse))
+						.addComponent(btnBrowseFile, GroupLayout.PREFERRED_SIZE, 28, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnEncrypt)
 						.addComponent(txtOutFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblOutFIle))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnDecrypt)
 						.addComponent(lblSecretKey)
 						.addComponent(txtSecretKey, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnShowKey))
-					.addGap(45)
-					.addComponent(btnExit)
-					.addGap(97)
+						.addComponent(btnShowKey, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnEncrypt)
+						.addComponent(btnDecrypt)
+						.addComponent(btnExit))
+					.addGap(16)
+					.addComponent(lblPreview_1)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblPreview, GroupLayout.PREFERRED_SIZE, 311, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(24, Short.MAX_VALUE))
+					.addContainerGap(51, Short.MAX_VALUE))
 		);
-		txtBrowseFile.setEditable(false);
-		btnShowKey.setEnabled(false);
-		txtOutFile.setEditable(false);
-		panel.setBackground(Color.WHITE);
+
+		panel.setBackground(pelColor);
 		txtBrowseFile.setColumns(10);
+
+		JLabel lblNewLabel = new JLabel("Image Encryption Program");
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBackground(new Color(176, 224, 230));
+		lblNewLabel.setFont(new Font("Segoe Script", Font.BOLD, 30));
+
+		JButton btnAbountUs = new JButton("");
+
+		btnAbountUs.setBackground(frmColor);
+		btnAbountUs.setBorder(null);
+		btnAbountUs.setIcon(new ImageIcon("abount.png"));
+
 		GroupLayout groupLayout = new GroupLayout(frmImageEncryption.getContentPane());
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addContainerGap()
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE).addContainerGap()));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup().addGap(24)
-						.addComponent(panel, GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE).addContainerGap()));
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 537, Short.MAX_VALUE)
+					.addContainerGap())
+				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addGap(18)
+					.addComponent(lblNewLabel)
+					.addPreferredGap(ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+					.addComponent(btnAbountUs, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(22))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(13)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel)
+						.addComponent(btnAbountUs, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 560, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(15, Short.MAX_VALUE))
+		);
 		panel.setLayout(gl_panel);
 		frmImageEncryption.getContentPane().setLayout(groupLayout);
 // Start Action ---------------------------------------------------------------------------------------------------------------
@@ -187,6 +287,7 @@ public class MainGUI {
 		btnBrowseFile.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+
 				JFileChooser browseFile = new JFileChooser("C:\\Users\\rusak\\Desktop");
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("PNG/JPEG", ".PNG/.png", ".JPEG/.jpeg");
 				browseFile.addChoosableFileFilter(filter);
@@ -206,14 +307,15 @@ public class MainGUI {
 							txtOutFile.setText(encrypt.changName());
 							isbtnDecrypt = false;
 							isbtnEncrypt = true;
+							lblPreview.setText(null);
 							lblPreview.setIcon(new ImageIcon(PreviewImage()));
-
 						} else {
 							decrypt = new Decrypt(browseFile.getSelectedFile(), fileBrowseName);
 							txtOutFile.setText(decrypt.changName());
 							isbtnDecrypt = true;
 							isbtnEncrypt = false;
 							lblPreview.setIcon(null);
+							lblPreview.setText("Can't Show Encryption Image");
 						}
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
@@ -221,6 +323,7 @@ public class MainGUI {
 					}
 
 				}
+
 			}
 		});
 
@@ -230,7 +333,6 @@ public class MainGUI {
 				if (String.valueOf(txtSecretKey.getPassword()) != "")
 					try {
 						encrypt.encrypt(String.valueOf(txtSecretKey.getPassword()));
-
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -244,7 +346,6 @@ public class MainGUI {
 				if (String.valueOf(txtSecretKey.getPassword()) != "")
 					try {
 						decrypt.decrypt(String.valueOf(txtSecretKey.getPassword()));
-
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -305,6 +406,18 @@ public class MainGUI {
 				System.exit(0);
 			}
 		});
+		
+		btnAbountUs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, 
+						"Program Encrypt&Decrypt Imgae\r\n"
+						+ "Tawee Sopapan 		Code 62523206004-0\r\n"
+						+ "Arta Chermue 		Code 62523206015-6\r\n"
+						+ "Tanadon Ratanasupa 	Code 62523206020-6\r\n"
+						+ "For ENGCE110"
+						,"About Us",JOptionPane.PLAIN_MESSAGE);
+			}
+		});
 // End Action--------------------------------------------------------------------------------------------------------------
 	}// End initialize()
 
@@ -315,13 +428,16 @@ public class MainGUI {
 			Image browseImage = browseIcon.getImage();
 			Image modifinedDabImage = browseImage.getScaledInstance(500, 300, java.awt.Image.SCALE_SMOOTH);
 			browseIcon = new ImageIcon(modifinedDabImage);
-			/*JFrame showPreview = new JFrame();
-			showPreview.setBounds(browseIcon.getIconWidth() / 2, browseIcon.getIconHeight() / 2, 1000, 600);
-			showPreview.setVisible(true);
-			showPreview.getContentPane().add(new JLabel(new ImageIcon(modifinedDabImage)));
-			showPreview.pack();*/
+			/*
+			 * JFrame showPreview = new JFrame();
+			 * showPreview.setBounds(browseIcon.getIconWidth() / 2,
+			 * browseIcon.getIconHeight() / 2, 1000, 600); showPreview.setVisible(true);
+			 * showPreview.getContentPane().add(new JLabel(new
+			 * ImageIcon(modifinedDabImage))); showPreview.pack();
+			 */
 			return modifinedDabImage;
 		}
 		return null;
 	}
+
 }// End Main

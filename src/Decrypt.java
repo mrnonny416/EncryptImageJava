@@ -12,6 +12,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.JOptionPane;
 
 public class Decrypt {
 	// Properties
@@ -47,11 +48,13 @@ public class Decrypt {
 			}
 			fileIn.close();
 			fileOut.close();
+			JOptionPane.showMessageDialog(null, "Your Decrypt Correct","Decryption Sucessful",JOptionPane.PLAIN_MESSAGE);
 		} catch (IOException e) {
 			try {
 				fileOut.close();
 				File f = new File(decryptName);
 				f.delete();
+				JOptionPane.showMessageDialog(null, "Your Decrypt InCorrect","Decryption Fail!!",JOptionPane.ERROR_MESSAGE);
 			} catch (IOException e1) {
 			}
 		}

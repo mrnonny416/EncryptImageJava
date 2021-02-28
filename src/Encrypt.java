@@ -11,6 +11,7 @@ import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import javax.swing.JOptionPane;
 
 public class Encrypt {
 //Properties
@@ -39,6 +40,7 @@ public class Encrypt {
 		while ((fileInByte = fileIn.read()) != -1) {
 			fileOut.write(fileInByte);
 		}
+		JOptionPane.showMessageDialog(null, "Your Encrypt Correct","Encryption Sucessful",JOptionPane.PLAIN_MESSAGE);
 		fileIn.close();
 		fileOut.close();
 	}
